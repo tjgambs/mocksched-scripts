@@ -29,6 +29,7 @@ class Rmp(Importer):
 		self.cur = self.conn.cursor()
 
 	def run(self):
+		self.prepare()
 		self.get_new()
 		self.import_to_add()
 		self.prepare()
@@ -53,7 +54,6 @@ class Rmp(Importer):
 
 	def download(self):
 		streams = self.get_terms()
-		streams = [a[0] for a in self.cur.fetchall()]
 		base_url = 'https://offices.depaul.edu/_layouts/DUC.SR.ClassSvc/DUClassSvc.ashx?action=searchclassbysubject&strm=%s'
 		term_courses = []
 		for s in streams:
